@@ -1,0 +1,20 @@
+// src/icons/CrossIcon.jsx
+
+const CrossIcon = (props) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect x="10" y="2" width="4" height="4" />
+    <rect x="10" y="10" width="4" height="4" />
+    <rect x="2" y="10" width="4" height="4" />
+    <rect x="18" y="10" width="4" height="4" />
+    <rect x="10" y="18" width="4" height="4" />
+  </svg>
+);
+
+export default CrossIcon;

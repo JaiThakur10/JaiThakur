@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400&display=swap");
+@import "tailwindcss";
+
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/fonts/MangoGrotesque/MangoGrotesque-Regular.woff2") format("woff2"),
+    url("/fonts/MangoGrotesque/MangoGrotesque-Regular.woff") format("woff"),
+    url("/fonts/MangoGrotesque/MangoGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MangoGrotesque";
+  src: url("/fonts/MangoGrotesque/MangoGrotesque-Bold.woff2") format("woff2"),
+    url("/fonts/MangoGrotesque/MangoGrotesque-Bold.woff") format("woff"),
+    url("/fonts/MangoGrotesque/MangoGrotesque-Bold.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-style: bold;
+  font-weight: 900;
+  text-rendering: optimizeLegibility;
+}
