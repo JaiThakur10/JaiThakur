@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Globe, MapPin } from "react-feather";
+import { Globe } from "react-feather";
 import gsap from "gsap";
+gsap.config({ force3D: true });
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
@@ -69,6 +70,16 @@ const HeroSection = () => {
       }
     });
 
+    const xSetters = imagesRefs.current.map((el) =>
+      gsap.quickSetter(el, "x", "px")
+    );
+    const ySetters = imagesRefs.current.map((el) =>
+      gsap.quickSetter(el, "y", "px")
+    );
+    const zSetters = imagesRefs.current.map((el) =>
+      gsap.quickSetter(el, "zIndex")
+    );
+
     // Orbiting logic
     const animateOrbit = () => {
       const heading = document.getElementById("main-heading");
@@ -89,12 +100,14 @@ const HeroSection = () => {
           Math.sin(angles[i]) * dimensions.radius -
           dimensions.imageSize / 2;
 
+        xSetters[i](x);
+        ySetters[i](y);
+        zSetters[i](y < getCenterY() ? 10 : 5);
+
         gsap.set(el, {
-          x,
-          y,
-          zIndex: y < getCenterY() ? 10 : 5,
           width: dimensions.imageSize,
           height: dimensions.imageSize,
+          force3D: true, // extra smoothness
         });
 
         const elRect = el.getBoundingClientRect();
@@ -197,13 +210,20 @@ const HeroSection = () => {
           key={index}
           ref={(el) => (imagesRefs.current[index] = el)}
           className="absolute pointer-events-none"
-          style={{ transform: "translate(0px, 0px)", zIndex: 5 }}
+          style={{
+            transform: "translate(0px, 0px)",
+            zIndex: 5,
+            willChange: "transform, opacity",
+          }}
         >
           <img
             src={img}
             alt={`Revolving ${index}`}
             className="w-full h-full object-cover transition-all duration-300 mix-blend-normal"
-            style={{ transition: "all 0.3s ease" }}
+            style={{
+              transition: "all 0.3s ease",
+              willChange: "transform, opacity",
+            }}
           />
         </div>
       ))}
