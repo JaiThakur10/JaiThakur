@@ -182,8 +182,11 @@ const HeroSection = () => {
       {/* Center Text */}
       <h1
         id="main-heading"
-        className="md:text-[26vw] font-bold text-9xl md:tracking-[-0.3rem] text-white mix-blend-difference z-30 pointer-events-none select-none absolute"
-        style={{ fontFamily: "MangoGrotesque" }}
+        className=" font-bold  md:tracking-[-0.3rem] text-white mix-blend-difference z-30 pointer-events-none select-none absolute"
+        style={{
+          fontFamily: "MangoGrotesque",
+          fontSize: "clamp(5rem, 28vw, 26vw)",
+        }}
       >
         JAI THAKUR
       </h1>
