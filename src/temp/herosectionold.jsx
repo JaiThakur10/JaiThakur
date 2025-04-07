@@ -9,14 +9,14 @@ const HeroSection = () => {
   const containerRef = useRef(null);
   const imagesRefs = useRef([]);
   const revolvingImages = [
-    "/me9.webp",
-    "/me10.webp",
-    "/me16.webp",
-    "/me11.webp",
-    "/me12.jpg",
-    "/me13.jpg",
-    "/me14.jpg",
-    "/me15.jpg",
+    "/me1.jpg",
+    "/me2.jpg",
+    "/me3.jpg",
+    "/me4.jpg",
+    "/me5.jpg",
+    "/me6.jpg",
+    "/me7.jpg",
+    "/me8.jpg",
   ];
 
   const [dimensions, setDimensions] = useState({
@@ -58,7 +58,7 @@ const HeroSection = () => {
         ? container.offsetHeight / 15
         : container.offsetHeight / 10;
 
-    // Set initial hidden state
+    // Initial state
     imagesRefs.current.forEach((el) => {
       if (el) {
         gsap.set(el, {
@@ -69,13 +69,13 @@ const HeroSection = () => {
       }
     });
 
-    // Orbiting logic
-    const animateOrbit = () => {
+    // Rotation animation
+    const animate = () => {
       const heading = document.getElementById("main-heading");
       const headingRect = heading.getBoundingClientRect();
 
       angles.forEach((angle, i) => {
-        angles[i] += 0.001;
+        angles[i] += orbitSpeed;
 
         const el = imagesRefs.current[i];
         if (!el) return;
@@ -110,10 +110,9 @@ const HeroSection = () => {
         }
       });
 
-      requestAnimationFrame(animateOrbit);
+      requestAnimationFrame(animate);
     };
 
-    // Full in-out timeline loop
     const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
 
     tl.fromTo(
@@ -136,7 +135,7 @@ const HeroSection = () => {
       }
     );
 
-    tl.to({}, { duration: 6 }); // Let them revolve a while
+    tl.to({}, { duration: 7 });
 
     tl.to(
       imagesRefs.current.slice().reverse(),
@@ -144,21 +143,21 @@ const HeroSection = () => {
         scale: 0.1,
         opacity: 0,
         rotate: "+=90",
-        duration: 0.6,
+        duration: 0.5,
         ease: "power2.inOut",
         stagger: {
           each: 0.1,
           from: "end",
         },
       },
-      ">-1" // start before previous ends
+      ">-1"
     );
 
-    animateOrbit();
+    animate();
 
     return () => {
       tl.kill();
-      cancelAnimationFrame(animateOrbit);
+      cancelAnimationFrame(animate);
     };
   }, [dimensions]);
 
@@ -182,7 +181,7 @@ const HeroSection = () => {
       {/* Center Text */}
       <h1
         id="main-heading"
-        className="md:text-[26vw] font-bold text-9xl md:tracking-[-0.3rem] text-white mix-blend-difference z-30 pointer-events-none select-none absolute"
+        className="md:text-[26vw]  text-[2vw] md:tracking-[-0.3rem] text-white mix-blend-difference z-30 pointer-events-none select-none absolute"
         style={{ fontFamily: "MangoGrotesque" }}
       >
         JAI THAKUR
