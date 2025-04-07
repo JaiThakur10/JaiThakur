@@ -140,7 +140,7 @@ const HeroSection = () => {
         scale: 1,
         opacity: 1,
         rotate: 360,
-        duration: 1.2,
+        duration: 1.6,
         ease: "power3.out",
         stagger: {
           each: 0.12,
@@ -149,7 +149,7 @@ const HeroSection = () => {
       }
     );
 
-    tl.to({}, { duration: 6 }); // Let them revolve a while
+    tl.to({}, { duration: 12 }); // Let them revolve a while
 
     tl.to(
       imagesRefs.current.slice().reverse(),
